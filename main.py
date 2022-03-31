@@ -19,11 +19,13 @@ def read_test_files(prefix: str, school: Optional[str] = "Great Neck") -> pd.Dat
         df["Type"] = roll
         dfs.append(df)
 
-    df = pd.concat(dfs).drop_duplicates(subset=["score", "First_initial", "lastname", "grade"], keep="last")\
-        .sort_values(by=["score", "grade"], ascending=[False, True])
+    df = pd.concat(dfs)
 
     if school is not None:
         df = df[df["SchoolName"].str.contains(school)]
+
+    df = df.drop_duplicates(subset=["score", "First_initial", "lastname", "grade"], keep="last")\
+        .sort_values(by=["score", "grade"], ascending=[False, True])
 
     return df
 
