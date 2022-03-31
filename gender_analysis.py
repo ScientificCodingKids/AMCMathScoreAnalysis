@@ -5,13 +5,15 @@ from typing import Optional
 
 
 def read_gender_file(prefix: str, cutoff: Optional[int] = 80) -> pd.DataFrame:
-    df = pd.read_csv(f"/home/nwind/PycharmProjects/AmcMathRanking/data/{prefix}_Contest Score Gender Report with Percentile.csv",
-                     skiprows=[0, 1, 2])
+    fn =  __file__ + "/../data/" + "{prefix}_Contest Score Gender Report with Percentile.csv"
+
+    df = pd.read_csv(fn, skiprows=[0, 1, 2])
 
     df = df[df["score"] > cutoff]
     df = df.sort_values(["score"], ascending=[True])
 
     return df
+
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
