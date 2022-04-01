@@ -2,10 +2,11 @@ from dash import Dash, html, dcc
 import plotly.express as px
 import pandas as pd
 from typing import Optional
+import os
 
 
 def read_gender_file(prefix: str, cutoff: Optional[int] = 80) -> pd.DataFrame:
-    fn =  __file__ + "/../data/" + "{prefix}_Contest Score Gender Report with Percentile.csv"
+    fn = os.path.dirname(__file__) + "/data/" + f"{prefix}_Contest Score Gender Report with Percentile.csv"
 
     df = pd.read_csv(fn, skiprows=[0, 1, 2])
 
